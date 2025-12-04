@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  mongo:
+    build:
+      context: ./init-db
+      dockerfile: Dockerfile
+    image: university-mongo-custom:latest
+    container_name: university-grades-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+      - ./init-db:/docker-entrypoint-initdb.d:ro
+    environment:
+      MONGO_INITDB_DATABASE: university
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      OULAD_ZIP_URL: "https://archive.ics.uci.edu/static/public/349/open+university+learning+analytics+dataset.zip"
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+volumes:
+  mongo-data:
+    name: university-mongo-data
