@@ -1,0 +1,71 @@
+/*
+ * =========================================================
+ * ГЕНЕРАЛЬНЫЕ СТИЛИ (Общая читабельность и поля)
+ * =========================================================
+ */
+body {
+    font-size: 11pt; 
+    line-height: 1.6; 
+    padding: 0;
+    margin: 1in; 
+}
+
+/* * =========================================================
+ * СТИЛИ ЗАГОЛОВКОВ (Управление разрывами страниц)
+ * =========================================================
+ */
+h1 {
+    font-size: 20pt;
+    margin-top: 1.5em; 
+    margin-bottom: 0.5em; 
+    page-break-before: always; /* Каждый H1 начинается с новой страницы */
+}
+
+h2 {
+    font-size: 16pt;
+    margin-top: 1.2em;
+    margin-bottom: 0.4em;
+    border-bottom: 1px solid #ccc; 
+    padding-bottom: 5px;
+    page-break-before: auto; 
+    page-break-after: avoid; /* Заголовок H2 не должен висеть в конце страницы */
+    page-break-inside: avoid; 
+}
+
+/* * =========================================================
+ * СТИЛИ КОДА (ГЛАВНЫЙ БЛОК + ГАРАНТИЯ ПЕРЕНОСА)
+ * =========================================================
+ */
+pre {
+    /* Визуальные стили */
+    background-color: #f6f8fa; 
+    border: 1px solid #e1e4e8; 
+    padding: 15px; 
+    border-radius: 6px; 
+    font-family: 'Consolas', 'Courier New', monospace; 
+    font-size: 9.5pt; 
+    
+    /* Основные свойства для переноса */
+    overflow-x: auto; 
+    white-space: pre-wrap !important; /* !!! Перезапись конфликтующих стилей */
+    word-wrap: break-word !important; 
+}
+
+/* * КРИТИЧЕСКИЙ БЛОК ДЛЯ ПЕРЕНОСА СИНТАКСИЧЕСКОЙ ПОДСВЕТКИ
+ * Применяет перенос к внутренним элементам (span), которые создает JS-подсветка.
+ */
+pre code, 
+pre code span, 
+pre code div {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+}
+
+/* Стили для встроенного кода (inline code) */
+code {
+    background-color: #e1e4e8;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 95%;
+}
